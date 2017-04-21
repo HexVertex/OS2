@@ -1,0 +1,29 @@
+c++ -Wall -Weffc++ -std=c++14 -O3 -c tracereader.cc
+c++ -Wall -Weffc++ -std=c++14 -O3 -c main.cc
+In file included from pt-simple.h:11:0,
+                 from main.cc:11:
+memory.h:23:43: warning: left shift count >= width of type [-Wshift-count-overflow]
+ const static uint64_t maxPhysMem = 1UL << maxPhysMemBits;
+                                           ^~~~~~~~~~~~~~
+c++ -Wall -Weffc++ -std=c++14 -O3 -c mmu.cc
+In file included from mmu.cc:9:0:
+memory.h:23:43: warning: left shift count >= width of type [-Wshift-count-overflow]
+ const static uint64_t maxPhysMem = 1UL << maxPhysMemBits;
+                                           ^~~~~~~~~~~~~~
+c++ -Wall -Weffc++ -std=c++14 -O3 -c oskernel.cc
+In file included from oskernel.h:12:0,
+                 from oskernel.cc:8:
+memory.h:23:43: warning: left shift count >= width of type [-Wshift-count-overflow]
+ const static uint64_t maxPhysMem = 1UL << maxPhysMemBits;
+                                           ^~~~~~~~~~~~~~
+c++ -Wall -Weffc++ -std=c++14 -O3 -c pt-simple.cc
+In file included from pt-simple.h:11:0,
+                 from pt-simple.cc:8:
+memory.h:23:43: warning: left shift count >= width of type [-Wshift-count-overflow]
+ const static uint64_t maxPhysMem = 1UL << maxPhysMemBits;
+                                           ^~~~~~~~~~~~~~
+pt-simple.cc: In member function 'virtual void SimpleOSKernel::pageFaultHandler(uint64_t)':
+pt-simple.cc:83:38: warning: left shift count >= width of type [-Wshift-count-overflow]
+   uint64_t addr(faultAddr & ((1UL << addressSpaceBits) - 1));
+                                      ^~~~~~~~~~~~~~~~
+c++ -Wall -Weffc++ -std=c++14 -O3 -o pagetables tracereader.o main.o mmu.o oskernel.o pt-simple.o
